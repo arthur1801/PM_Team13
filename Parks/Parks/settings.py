@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'login.apps.LoginConfig',
     'Parkapp.apps.ParkappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
