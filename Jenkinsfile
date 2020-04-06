@@ -6,8 +6,9 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            sudo apt install python3-pip
-            pip3 install Django
+            virtualenv myenv
+            source myenv/bin/activate
+            pip install Django
             python3 Parks/manage.py test
             '''
          }
