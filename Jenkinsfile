@@ -6,7 +6,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            python3.8 Parks/manage.py test
+            python3 Parks/manage.py test
             '''
          }
 
