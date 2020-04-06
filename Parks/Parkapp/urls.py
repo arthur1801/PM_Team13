@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.home, name='home-url'),
     #path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='Parkapp/login.html'), name='login-url'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='Parkapp/home.html'), name='logout'),
 
 ]
