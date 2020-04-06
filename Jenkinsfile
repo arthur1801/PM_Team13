@@ -5,10 +5,24 @@ pipeline {
       stage('Build') {
          steps {
            echo "Hello !!!"
+
          }
 
       }
    }
+   stage ("Get Latest Code") {
+        checkout scm
+        }
+
+       stage ("Collect Static files") {
+        sh '''
+            source venv/bin/activate
+            python Parks/manage.py test
+            deactivate
+           '''
+        echo "done tests !!!"
+    }
+
 }
 /*
 node {
