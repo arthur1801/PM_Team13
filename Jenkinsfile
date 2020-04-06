@@ -6,8 +6,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            virtualenv myenv
-            source myenv/bin/activate
+            source venv/bin/activate
             pip install Django
             python3 Parks/manage.py test
             '''
