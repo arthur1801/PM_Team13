@@ -6,8 +6,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            Pip install django-jenkins
-            python Parks/manage.py test
+            python3.8 Parks/manage.py test
             '''
          }
 
