@@ -6,7 +6,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            . venv/bin/activate
+            . $VENV/bin/activate
             python3 Parks/manage.py test
             '''
          }
