@@ -1,5 +1,5 @@
 pipeline {
-   agent any
+   agent {docker {image 'python3:alpine'}}
 
    stages {
       stage('Build') {
