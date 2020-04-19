@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            sudo apt-get install python-django-crispy-forms
+            pip3 install --user django-crispy-forms
             cd Parks
             python manage.py test
             '''
