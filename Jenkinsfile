@@ -9,7 +9,7 @@ pipeline {
            echo "Hello !!!"
             sh '''
             cd Parks
-            python manage.py runserver test
+            python manage.py test
             '''
          }
 
