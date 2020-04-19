@@ -9,7 +9,7 @@ pipeline {
            echo "Hello !!!"
             sh '''
             source venv/bin/activate
-            venv/bin/pip3.8 install django
+            venv/bin/pip install django
             cd Parks
             python3.8 manage.py runserver test
             '''
