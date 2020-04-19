@@ -1,6 +1,6 @@
 pipeline {
    agent {
-      docker {image 'jandigarte/django'}
+      docker {image 'davidj/django-production-py3'}
    }
 
    stages {
