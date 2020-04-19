@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            pip install django-crispy-forms
+            python -m pip install --user --upgrade pip
             cd Parks
             python manage.py test
             '''
