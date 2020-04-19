@@ -5,3 +5,6 @@ def home(request):
 
 def login(request):
     return render(request,'Parkapp/login.html')
+
+def PasswordChangeView (request):
+    return render(request,'Parkapp/password_change_form.html')
