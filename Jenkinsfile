@@ -1,6 +1,6 @@
 pipeline {
    agent {
-      docker {image 'django'}
+      docker {image 'jandigarte/django'}
    }
 
    stages {
@@ -8,8 +8,8 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            virtualenv a
-
+            cd Parks
+            python manage.py test
             '''
          }
 
