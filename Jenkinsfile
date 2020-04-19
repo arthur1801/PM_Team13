@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            sourve venv/bin/activate
+            source venv/bin/activate
             '''
          }
 
