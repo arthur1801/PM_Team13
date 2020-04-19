@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            source bin/activate
+            source venv/bin/activate
             pyrhon3.8 --version
             '''
          }
