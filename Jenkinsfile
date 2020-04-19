@@ -1,6 +1,6 @@
 pipeline {
    agent {
-      docker {image 'wildfish/django'}
+      docker {image 'camandel/django-wiki'}
    }
 
    stages {
