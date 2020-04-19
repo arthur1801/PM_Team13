@@ -9,7 +9,8 @@ pipeline {
            echo "Hello !!!"
             sh '''
             source venv/bin/activate
-            python3.8 --version
+            cd Parks
+            python3.8 manage.py runserver test
             '''
          }
 
