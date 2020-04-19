@@ -8,8 +8,9 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            source venv/bin/activate
-            pip3 install -r requirements.txt
+            cd venv
+            source bin/activate
+            bin/pip install -r requirements.txt
             '''
          }
 
