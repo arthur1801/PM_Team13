@@ -1,6 +1,6 @@
 pipeline {
    agent {
-      docker {image 'camandel/django-wiki'}
+      docker {image 'django'}
    }
 
    stages {
@@ -9,7 +9,7 @@ pipeline {
            echo "Hello !!!"
             sh '''
             cd Parks
-            python3.8 manage.py test
+            python manage.py test
             '''
          }
 
