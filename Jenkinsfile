@@ -8,8 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            virtualenv -p python myenv
-            source myenv/bin/activate
+            source venv/bin/activate
             pip3 install -r requirements.txt
             '''
          }
