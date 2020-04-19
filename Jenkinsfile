@@ -8,9 +8,8 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            cd venv
             source bin/activate
-            bin/pip install -r requirements.txt
+            pyrhon3.8 --version
             '''
          }
 
