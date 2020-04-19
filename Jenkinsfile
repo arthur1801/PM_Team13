@@ -1,6 +1,6 @@
 pipeline {
    agent {
-      docker {image 'python:3-alpine'}
+      docker {image 'django'}
    }
 
    stages {
@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            virtualenv virtual
+            ls
             '''
          }
 
