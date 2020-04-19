@@ -8,7 +8,8 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            ls
+            cd Parks
+            python manage.py runserver test
             '''
          }
 
