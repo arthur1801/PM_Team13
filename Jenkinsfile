@@ -8,9 +8,8 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            pip install django-crispy-forms
-            cd Parks
-            python manage.py test
+            virtualenv a
+
             '''
          }
 
