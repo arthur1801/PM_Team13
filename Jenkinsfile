@@ -9,7 +9,7 @@ pipeline {
            echo "Hello !!!"
             sh '''
             source venv/bin/activate
-            django-admin startproject test
+            pip install django
             '''
          }
 
