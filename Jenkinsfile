@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            pip install django
+            python -m pip install Django
             '''
          }
 
