@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            python -c "import django; print(django.get_version())"
+            ls
             '''
          }
 
