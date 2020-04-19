@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            pip3 install --user django-crispy-forms
+            pip install django-crispy-forms
             cd Parks
             python manage.py test
             '''
