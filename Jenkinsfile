@@ -8,8 +8,9 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            source venv/bin/activate
-            sudo pip install django
+            virtualenv -p python3 myenv
+            source myenv/bin/activate
+            pip3 install -r requirements.txt
             '''
          }
 
