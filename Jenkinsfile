@@ -8,7 +8,7 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            sudo python -m pip install Django
+            python -c "import django; print(django.get_version())"
             '''
          }
 
