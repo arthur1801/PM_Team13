@@ -1,6 +1,6 @@
 pipeline {
    agent {
-      docker {image 'python:3-alpine'}
+      docker {image 'django'}
    }
 
    stages {
@@ -8,7 +8,8 @@ pipeline {
          steps {
            echo "Hello !!!"
             sh '''
-            python -c "import django; print(django.get_version())"
+            cd Parks
+            python manage.py test
             '''
          }
 
