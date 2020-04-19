@@ -9,7 +9,7 @@ pipeline {
            echo "Hello !!!"
             sh '''
             cd Parks
-            python manage.py test
+            python3.8 manage.py test
             '''
          }
 
