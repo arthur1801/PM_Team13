@@ -1,14 +1,14 @@
 
 {% extends "Parkapp/base.html" %}
-{% load crispy_forms_tags %}
+
 {% block content %}
 
     <div  class="card">
     <div  class="card-body">
     <h4  class="card-title"> Change your password</h4>
-    <form  method="post">
+    <form action="change_name"  method="post">
     {% csrf_token %}
-    {{ form|crispy }}
+<!--        <input type="text" name="newusername">-->
         <button  type="submit"  class="btn btn-success">Change password </button>
     </form>
     </div>
