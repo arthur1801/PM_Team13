@@ -10,6 +10,11 @@ def login(request):
 
 def PasswordChangeView (request):
     return render(request,'Parkapp/password_change_form.html')
+
+
+def UsernameChangeView (request):
+    return render(request,'Parkapp/username_change.html')
+
 def send_mail(request):
     res = sm(
         subject = 'Subject here',
