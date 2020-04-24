@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import render, HttpResponse
 from django.core.mail import send_mail as sm
 from django.contrib.auth.models import User
 from django import forms
+from .forms import RegisterForm
+
 
 def home(request):
     return render(request,'Parkapp/home.html')
@@ -28,6 +30,16 @@ def ChangeName (request):
     user.save()
 
     return home
+def register(response):
+    if response.method == "POST":
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+
+        return redirect("/login")
+    else:
+        form = RegisterForm()
+    return render(response, "Parkapp/register.html", {"form":form})
 
 def send_mail(request):
     res = sm(
