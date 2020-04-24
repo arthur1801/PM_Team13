@@ -25,8 +25,12 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'home-url' %}">Home</a>
+
 <!--
               <a class="nav-item nav-link" href="{% url 'login-url' %}">Login</a>
+
+
+
 -->
             </div>
             <!-- Navbar Right Side -->
@@ -35,10 +39,11 @@
                   <a class="nav-item nav-link" href="{% url 'username_change' %}">Change Username</a>
                   <a class="nav-item nav-link" href="{% url 'password_change' %}">Change Password</a>
                   <a class="nav-item nav-link" href="{% url 'logout' %}">Logout {{ user.get_username }}</a>
+                  <
 
                 {% else %}
                     <a class="nav-item nav-link" href="{% url 'login-url' %}">Login</a>
-                    <a class="nav-item nav-link" href="#">Register</a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                 {% endif %}
             </div>
           </div>

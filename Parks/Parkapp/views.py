@@ -19,6 +19,10 @@ def PasswordChangeView (request):
 def UsernameChangeView (request):
     return render(request,'Parkapp/username_change.html')
 
+
+def Register (request):
+    return render(request,'Parkapp/register.html')
+
 def ChangeName (request):
     #if request.method == "POST":
         #newusername = request.POST["newusername"]
