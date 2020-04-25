@@ -4,6 +4,7 @@ from django.core.mail import send_mail as sm
 from django.contrib.auth.models import User
 from django import forms
 from .forms import RegisterForm
+from .forms import ChangeUsernameForm
 
 
 def home(request):
@@ -17,23 +18,36 @@ def PasswordChangeView (request):
 
 
 def UsernameChangeView (request):
-    return render(request,'Parkapp/username_change.html')
+    if request.method == "POST":
+        form = ChangeUsernameForm(request.POST)
+        if form.is_valid():
+            newusername=form.cleaned_data['username']
+            user = User.objects.get(username=request.user)
+            user.username = newusername
+            user.save()
+            return redirect('home-url')
+    else:
+        form = ChangeUsernameForm()
+
+    return render(request,'Parkapp/username_change.html',{'form':form})
 
 
 def Register (request):
     return render(request,'Parkapp/register.html')
 
-def ChangeName (request):
-    #if request.method == "POST":
-        #newusername = request.POST["newusername"]
-        #if User.objects.filter(username=newusername).exists():
-        #raise forms.ValidationError(u'Username "%s" is not available.' % newusername)
+# def ChangeName (response):
+#     #if response.method == "POST":
+#         #newusername = request.POST["newusername"]
+#         #if User.objects.filter(username=newusername).exists():
+#         #raise forms.ValidationError(u'Username "%s" is not available.' % newusername)
+#
+#     user = User.objects.get(username="test")
+#     user.username = "test1"
+#     user.save()
+#
+#     return home
 
-    user = User.objects.get(username="test")
-    user.username = "test1"
-    user.save()
 
-    return home
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
