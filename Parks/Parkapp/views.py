@@ -35,18 +35,6 @@ def UsernameChangeView (request):
 def Register (request):
     return render(request,'Parkapp/register.html')
 
-# def ChangeName (response):
-#     #if response.method == "POST":
-#         #newusername = request.POST["newusername"]
-#         #if User.objects.filter(username=newusername).exists():
-#         #raise forms.ValidationError(u'Username "%s" is not available.' % newusername)
-#
-#     user = User.objects.get(username="test")
-#     user.username = "test1"
-#     user.save()
-#
-#     return home
-
 
 def register(response):
     if response.method == "POST":
@@ -70,3 +58,6 @@ def send_mail(request):
 
     return HttpResponse(f"Email sent to {res} members")
     #return HttpResponse("Email sent to "+ res +" members")
+
+def profile(request):
+    return render(request,'Parkapp/profile.html')
