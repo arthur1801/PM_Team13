@@ -38,6 +38,7 @@
                 {% if user.is_authenticated %}
                   <a class="nav-item nav-link" href="{% url 'username_change' %}">Change Username</a>
                   <a class="nav-item nav-link" href="{% url 'password_change' %}">Change Password</a>
+                  <a class="nav-item nav-link" href="{% url 'sendmail' %}">Send Mail</a>
                   <a class="nav-item nav-link" href="{% url 'logout' %}">Logout {{ user.get_username }}</a>
                   <
 
