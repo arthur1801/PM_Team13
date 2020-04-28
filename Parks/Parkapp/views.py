@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django import forms
 from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm
+from .forms import SendmailForm
 
 
 def home(request):
@@ -46,16 +47,32 @@ def register(response):
         form = RegisterForm()
     return render(response, "Parkapp/register.html", {"form":form})
 
-def send_mail(request):
-    res = sm(
-        subject = 'Subject here',
-        message = 'Here is the message.',
-        from_email = 'mail@gmail.com',
-        recipient_list = ['someone@example.com'],
-        fail_silently=False,
-    )
+def sendmail(request):
+    if request.method == 'GET':
+        form = SendmailForm()
+    else:
+        form = SendmailForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                sm(subject, message, from_email, ['b7parks@gmail.com'])
+            except :
+                return HttpResponse('Invalid header found.')
+            return redirect('/login')
+    return render(request, "Parkapp/sendmail.html", {'form': form})
 
-    return HttpResponse(f"Email sent to {res} members")
+   # res = sm(
+   #     subject = 'Subject here',
+    #    message = 'Here is the message.',
+    #    from_email = 'b7parks@gmail.com',
+    #    recipient_list = ['shaharkozi18@gmail.com'],
+    #    fail_silently=False,
+   # )
+
+
+    #return HttpResponse("Email sent to {res} members")
     #return HttpResponse("Email sent to "+ res +" members")
 
 def profile(request):
