@@ -59,12 +59,16 @@ def sendmail(request):
                 sm(subject, message ,'b7parks@gmail.com' ,[To_email],fail_silently=False )
             except :
                 return HttpResponse('Invalid header found.')
-            return redirect('home-url')
+            return render(request, "Parkapp/success.html", {'some_flag': True})
+            #return redirect('profile')
 
     else:
         form = SendmailForm()
 
     return render(request, "Parkapp/sendmail.html", {'form': form})
+
+
+
 
    # res = sm(
    #     subject = 'Subject here',
