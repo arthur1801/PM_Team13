@@ -48,19 +48,22 @@ def register(response):
     return render(response, "Parkapp/register.html", {"form":form})
 
 def sendmail(request):
-    if request.method == 'GET':
-        form = SendmailForm()
-    else:
+    if request.method == 'POST':
         form = SendmailForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']
-            from_email = form.cleaned_data['from_email']
+            To_email = form.cleaned_data['To_email']
             message = form.cleaned_data['message']
             try:
-                sm(subject, message, from_email, ['b7parks@gmail.com'])
+                #sm(subject, message, To_email, ['b7parks@gmail.com'])
+                sm(subject, message ,'b7parks@gmail.com' ,[To_email],fail_silently=False )
             except :
                 return HttpResponse('Invalid header found.')
-            return redirect('/login')
+            return redirect('home-url')
+
+    else:
+        form = SendmailForm()
+
     return render(request, "Parkapp/sendmail.html", {'form': form})
 
    # res = sm(

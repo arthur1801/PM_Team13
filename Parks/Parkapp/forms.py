@@ -32,6 +32,9 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 class SendmailForm(forms.Form):
-    from_email = forms.EmailField(required=True)
+    To_email = forms.EmailField(required=True)
     subject = forms.CharField(required=True)
     message = forms.CharField(widget=forms.Textarea, required=True)
+    class Meta:
+
+        fields = ['To_email','subject','message']

@@ -1,16 +1,15 @@
 {% extends "Parkapp/base.html" %}
 {% block content %}
+{% load crispy_forms_tags %}
 
     <h2>Send e-mail to someone@example.com:</h2>
 
-    <form action="Sendmail" method="post" enctype="text/plain">
-        Name:<br>
-        <input type="text" name="name"><br>
-        E-mail:<br>
-        <input type="text" name="mail"><br>
-        Comment:<br>
-        <input type="text" name="comment" size="150"><br><br>
-        <input type="submit" value="Send">
-        <input type="reset" value="Reset">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+
+        <button class="btn btn-outline-info" type="submit">Send</button>
+
     </form>
 {% endblock %}
