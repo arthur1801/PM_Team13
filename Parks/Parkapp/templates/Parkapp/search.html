@@ -12,4 +12,16 @@
     <br>
     <button type="submit">Search</button>
 </form>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+    {% for instance in queryset %}
+    <tr>
+        <td>{{instance.username}}</td>
+        <td>{{instance.email}}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

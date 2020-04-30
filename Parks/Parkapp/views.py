@@ -105,6 +105,12 @@ def profile(request):
 
 def search(request):
     form = SearchForm(request.POST)
-
-    return render(request,'Parkapp/search.html')
+    context={
+    }
+    if request.method == 'POST':
+        queryset=User.objects.all()
+        context={
+            'queryset': queryset,
+        }
+    return render(request,'Parkapp/search.html',context)
 
