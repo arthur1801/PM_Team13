@@ -4,7 +4,7 @@ from django.core.mail import send_mail as sm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django import forms
-from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm
+from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
 from .forms import SendmailForm
 
 
@@ -103,5 +103,8 @@ def profile(request):
 
     return render(request,'Parkapp/profile.html', context)
 
+def search(request):
+    form = SearchForm(request.POST)
 
+    return render(request,'Parkapp/search.html')
 
