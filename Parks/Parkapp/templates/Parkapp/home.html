@@ -1,12 +1,14 @@
 {% extends "Parkapp/base.html" %}
 {% block content %}
-
+        {% for i in parks %}
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">Home Page</a>
-              <h2 class="account-heading">Wellcome {{ user.username }}</h2>
+              <a class="mr-2" href="#">{{i.Name}}</a>
+              <h2 class="account-heading">{{ i.other }}</h2>
             </div>
           </div>
         </article>
+        {% endfor %}
+
 {% endblock %}

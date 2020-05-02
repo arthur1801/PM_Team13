@@ -6,11 +6,16 @@ from django.contrib import messages
 from django import forms
 from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
 from .forms import SendmailForm
+from .models import B7data
 
 
 def home(request):
+    context={
+        'parks': B7data.objects.all()
+    }
+    return render(request,'Parkapp/home.html',context)
 
-    return render(request,'Parkapp/home.html')
+
 
 def login(request):
    return render(request,'Parkapp/login.html')
