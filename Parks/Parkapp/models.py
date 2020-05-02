@@ -10,12 +10,16 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
+class Parkimg(models.Model):
+    park = models.OneToOneField('B7data', on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='park_pics')
+
 
 
 class B7data(models.Model):
     Name = models.CharField(max_length=40, blank=True, null=True)
     surface = models.CharField(max_length=40, blank=True, null=True)
-    shadowing = models.CharField(max_length=5, blank=True, null=True)
+    shadowing = models.CharField(max_length=10, blank=True, null=True)
     combined1 = models.IntegerField(default=0)
     combined2 = models.IntegerField(default=0)
     combined3 = models.IntegerField(default=0)
