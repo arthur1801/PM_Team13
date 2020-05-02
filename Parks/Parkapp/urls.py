@@ -19,6 +19,7 @@ urlpatterns = [
     #path('sendmail/', auth_views.LoginView.as_view(template_name='Parkapp/sendmail.html'), name='Sendmail'),
     path('sendmail/',v.sendmail,name='sendmail'),
     path('profile/',v.profile,name='profile'),
+    path('search/',v.search,name='search'),
 ]
 
 if settings.DEBUG:

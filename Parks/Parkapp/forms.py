@@ -38,3 +38,12 @@ class SendmailForm(forms.Form):
     class Meta:
 
         fields = ['To_email','subject','message']
+
+
+class SearchForm(forms.ModelForm):
+    class Meta:
+        model=User
+        fields=['username']
+
+
+

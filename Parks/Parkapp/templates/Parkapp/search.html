@@ -1,0 +1,27 @@
+{% extends "Parkapp/base.html" %}
+
+{% block title %}Search username{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Search Username</h1>
+<form method="post" action="/search/">
+    {% csrf_token%}
+    {{form|crispy}}
+    <input type="text" name="srh" placeholder="Enter username">
+    <br>
+    <button type="submit">Search</button>
+</form>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+    {% for instance in queryset %}
+    <tr>
+        <td>{{instance.username}}</td>
+        <td>{{instance.email}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

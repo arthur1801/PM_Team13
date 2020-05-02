@@ -4,15 +4,17 @@ from django.core.mail import send_mail as sm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django import forms
-from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm
+from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
 from .forms import SendmailForm
 
 
 def home(request):
+
     return render(request,'Parkapp/home.html')
 
 def login(request):
-    return render(request,'Parkapp/login.html')
+   return render(request,'Parkapp/login.html')
+
 
 def PasswordChangeView (request):
     return render(request,'Parkapp/password_change_form.html')
@@ -100,3 +102,15 @@ def profile(request):
     }
 
     return render(request,'Parkapp/profile.html', context)
+
+def search(request):
+    form = SearchForm(request.POST)
+    context={
+    }
+    if request.method == 'POST':
+        queryset=User.objects.all()
+        context={
+            'queryset': queryset,
+        }
+    return render(request,'Parkapp/search.html',context)
+
