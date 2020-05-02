@@ -5,7 +5,7 @@
 
 {% block content %}
 <h1>Search Username</h1>
-<form method="post" action="/search/">
+<form method="get" action="/search/">
     {% csrf_token%}
     {{form|crispy}}
     <input type="text" name="srh" placeholder="Enter username">

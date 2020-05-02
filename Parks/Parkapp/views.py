@@ -110,12 +110,10 @@ def profile(request):
 
 def search(request):
     form = SearchForm(request.POST)
-    context={
-    }
-    if request.method == 'POST':
-        queryset=User.objects.all()
-        context={
-            'queryset': queryset,
-        }
-    return render(request,'Parkapp/search.html',context)
+    query = request.GET.get('srh', '')
+    if query:
+        queryset = User.objects.filter(username=query).distinct()
+    else:
+        queryset = []
+    return render(request, 'Parkapp/search.html', {'queryset': queryset, })
 
