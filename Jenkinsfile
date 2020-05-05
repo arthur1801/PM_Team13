@@ -18,10 +18,9 @@ pipeline {
    }
    
    post {
-        always {
-           steps{[$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'arthur1801@outlook.com', sendToIndividuals: true]}
-
-        }
-    }
+       always {
+           emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+       }
+   }
 }
 
