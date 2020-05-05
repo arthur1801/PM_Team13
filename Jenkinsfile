@@ -22,7 +22,7 @@ pipeline {
           emailext body: 'Team 13 pipline failure', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to:'arthuvi@ac.sce.ac.il , arthur1801@outlook.com'  ,subject: 'Fix your code!!!!'
        }
        always {
-           emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to: 'arthur1801@outlook.com' ,subject: 'Test'
+           emailext body: 'Team 13 pipline failure', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to:'arthuvi@ac.sce.ac.il , arthur1801@outlook.com'  ,subject: 'Fix your code!!!!'
        }
    }
 }
