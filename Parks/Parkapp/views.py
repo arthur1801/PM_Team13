@@ -112,7 +112,7 @@ def search(request):
     form = SearchForm(request.POST)
     query = request.GET.get('srh', '')
     if query:
-        queryset = User.objects.filter(username=query).distinct()
+        queryset = User.objects.filter(username__contains=query)
     else:
         queryset = []
     return render(request, 'Parkapp/search.html', {'queryset': queryset, })
