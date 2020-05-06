@@ -9,7 +9,7 @@ pipeline {
            
             sh '''
             cd Parks
-            python manage.py test Parkapp.tests.testing
+            python manage.py test 
             '''
            
          }
