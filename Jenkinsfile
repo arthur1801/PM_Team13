@@ -11,20 +11,26 @@ pipeline {
             cd Parks
             python manage.py test 
             '''
-           
          }
-
       }
       
+       
       stage ('Deploy To Prod'){
         input{
           message "Do you want to proceed for production deployment?"
         }
           steps {
-                      sh 'echo "Deploy into Prod"'
-
-              }
+                sh 'echo "Deploy into Prod"'
+          }
+        }
+      
+      
+      
+      
+      
    }
+      
+      
    
    post {
        failure  {
