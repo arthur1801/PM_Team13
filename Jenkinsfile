@@ -4,7 +4,17 @@ pipeline {
    }
 
    stages {
-      stage('Build') {
+      stage('Prettier') {
+         steps {
+           
+            sh '''
+            prettier --check 
+            '''
+           
+         }
+
+      }
+      stage('Test') {
          steps {
            
             sh '''
