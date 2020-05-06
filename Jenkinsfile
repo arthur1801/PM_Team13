@@ -4,18 +4,29 @@ pipeline {
    }
 
    stages {
-      stage('Build') {
+      stage('Test') {
          steps {
            
             sh '''
             cd Parks
-            python manage.py test Parkapp.tests.testing
+            python manage.py test 
             '''
-           
          }
-
       }
+      
+       
+      stage ('Deploy To Prod'){
+        input{
+          message "Do you want to proceed for production deployment?"
+        }
+          steps {
+                sh 'echo "Deploy into Prod"'
+          }
+        }
+      
    }
+      
+      
    
    post {
        failure  {
