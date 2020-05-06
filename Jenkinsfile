@@ -4,16 +4,6 @@ pipeline {
    }
 
    stages {
-      stage('Prettier') {
-         steps {
-           
-            sh '''
-            prettier --check 
-            '''
-           
-         }
-
-      }
       stage('Test') {
          steps {
            
@@ -25,6 +15,15 @@ pipeline {
          }
 
       }
+      
+      stage ('Deploy To Prod'){
+        input{
+          message "Do you want to proceed for production deployment?"
+        }
+          steps {
+                      sh 'echo "Deploy into Prod"'
+
+              }
    }
    
    post {
