@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.forms import ModelForm
 from .models import Profile
 
@@ -8,10 +8,11 @@ from .models import Profile
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
     Above_12= forms.BooleanField()
-    is_staff=forms.BooleanField(required=False)
+    group = forms.ModelChoiceField(queryset=Group.objects.all(),required=True)
+
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2","Above_12","is_staff"]
+        fields = ["username", "email", "password1", "password2","Above_12","group"]
 
 class ChangeUsernameForm(UserChangeForm ):
     password = None

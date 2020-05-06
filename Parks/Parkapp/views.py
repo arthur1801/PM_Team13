@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, HttpResponse
 from django.core.mail import send_mail as sm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group,GroupManager
 from django.contrib import messages
 from django import forms
 from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
@@ -48,7 +48,16 @@ def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
         if form.is_valid():
+            checkgroup=form.cleaned_data['group']
+            print(checkgroup)
+            if str(checkgroup).__eq__('parents'):
+                my_group = Group.objects.get(name='parents')
+            else:
+                my_group = Group.objects.get(name='kids')
             form.save()
+            idG=User.objects.get_by_natural_key(form.cleaned_data['username'])
+            my_group.user_set.add(idG)
+
             return redirect("/login")
     else:
         form = RegisterForm()
