@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User,Group
 from django.forms import ModelForm
-from .models import Profile
+from .models import Profile,Parkimg
 
 
 class RegisterForm(UserCreationForm):
@@ -26,11 +26,13 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email']
+
+
+
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
-
 
 class SendmailForm(forms.Form):
     To_email = forms.EmailField(required=True)
