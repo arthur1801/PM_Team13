@@ -1,6 +1,6 @@
 import json
 import urllib.request as request
-from .models import B7data
+from .models import B7data,Parkimg
 
 B7_url = 'https://opendataprod.br7.org.il/dataset/8ab84c8f-2842-4d41-8838-978a757b5759/resource/f3d2fe4a-0b57-4c88-b6c5-089df5949278/download/playgrounds.json'
 
@@ -24,3 +24,8 @@ def updatedb():
         temp.save()
 
 
+def addimg():
+    for i in range(1,250):
+        a = B7data.objects.get(id=i)
+        b = Parkimg(a)
+        b.save()
