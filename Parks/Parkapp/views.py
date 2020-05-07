@@ -6,12 +6,13 @@ from django.contrib import messages
 from django import forms
 from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
 from .forms import SendmailForm
-from .models import B7data
+from .models import B7data,Parkimg
 
 
 def home(request):
     context={
-        'parks': B7data.objects.all()
+        'parks': B7data.objects.all(),
+        'parks-img': Parkimg.objects.all()
     }
     return render(request,'Parkapp/home.html',context)
 
