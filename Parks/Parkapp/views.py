@@ -1,17 +1,46 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, HttpResponse
 from django.core.mail import send_mail as sm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group,GroupManager
 from django.contrib import messages
 from django import forms
 from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
 from .forms import SendmailForm
-from .models import B7data
+from .models import B7data,Parkimg,Location
 
 
 def home(request):
+    Center=Location(31.267509,34.789512)
+    South = Location(31.225185, 34.789512)
+    North = Location(31.309833, 34.789512)
+    CenterWest = Location(31.267509, 34.842315)
+    CenterEast = Location(31.267509,34.738301)
+    SouthWest = Location(31.225185,34.842315)
+    SouthEast = Location(31.225185,34.738301)
+    NorthWest = Location(31.309833,34.842315)
+    NorthEast = Location(31.309833,34.738301)
+    NE = list()
+    NW= list()
+    SE = list()
+    SW = list()
+    for i in (B7data.objects.all()):
+
+        if ((i.lon <= North.lon ) and (i.lon>= NorthEast.lon)) and ((i.lat <=North.lat) and (i.lat>=Center.lat)):
+            NE.append(i)
+
+        elif ((i.lon <= NorthWest.lon ) and (i.lon>= North.lon)) and ((i.lat <=North.lat) and (i.lat>=Center.lat)):
+            NW.append(i)
+
+        elif ((i.lon <= South.lon ) and (i.lon>= SouthEast.lon)) and ((i.lat <=Center.lat) and (i.lat>=South.lat)):
+            SE.append(i)
+
+        elif ((i.lon <= SouthWest.lon ) and (i.lon>= South.lon)) and ((i.lat <=Center.lat) and (i.lat>=South.lat)):
+            SW.append(i)
+
+
     context={
-        'parks': B7data.objects.all()
+        'parks': NE+NW+SE+SW ,
+        'parks-img': Parkimg.objects.all()
     }
     return render(request,'Parkapp/home.html',context)
 
@@ -48,7 +77,16 @@ def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
         if form.is_valid():
+            checkgroup=form.cleaned_data['group']
+            print(checkgroup)
+            if str(checkgroup).__eq__('parents'):
+                my_group = Group.objects.get(name='parents')
+            else:
+                my_group = Group.objects.get(name='kids')
             form.save()
+            idG=User.objects.get_by_natural_key(form.cleaned_data['username'])
+            my_group.user_set.add(idG)
+
             return redirect("/login")
     else:
         form = RegisterForm()

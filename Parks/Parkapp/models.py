@@ -34,6 +34,14 @@ class B7data(models.Model):
     lat = models.FloatField(default=0.00)
     lon = models.FloatField(default=0.00)
 
+
+class Location():
+    def __init__(self,a,l):
+        self.lat=a
+        self.lon =l
+
+
+
     # def __init__(self,i):
     #     super(B7data, self).__init__()
     #     self.Name = i['Name']

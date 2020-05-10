@@ -2,11 +2,14 @@
 {% block content %}
         {% for i in parks %}
         <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ i.parkimg.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{i.Name}}</a>
-              <h2 class="account-heading">{{ i.other }}</h2>
+              <a class="mr-2" href="#">{{ i.Name }}</a>
+              <small class="text-muted"> </small>
             </div>
+            <h2><a class="article-title" href="#"> </a></h2>
+            <p class="article-content"></p>
           </div>
         </article>
         {% endfor %}
