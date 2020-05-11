@@ -1,6 +1,6 @@
 pipeline {
    agent {
-      docker {image 'tatianno/django'}
+      docker {dockerfile true}
    }
 
    stages {
