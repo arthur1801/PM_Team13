@@ -11,7 +11,7 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 class Parkimg(models.Model):
-    
+
     park = models.OneToOneField('B7data', on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='park_pics')
 
