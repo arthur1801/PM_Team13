@@ -1,7 +1,5 @@
 pipeline {
-   agent {
-      docker {image 'tatianno/django'}
-   }
+   agent { dockerfile true }
 
    stages {
       stage('Test') {
@@ -14,17 +12,8 @@ pipeline {
          }
       }
       
-       
-      stage ('Deploy To Prod'){
-        input{
-          message "Do you want to proceed for production deployment?"
-        }
-          steps {
-                sh 'echo "Deploy into Prod"'
-          }
-        }
-      
    }
+
       
       
    

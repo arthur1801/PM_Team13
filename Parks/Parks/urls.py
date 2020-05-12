@@ -23,3 +23,5 @@ urlpatterns = [
     #path('login/', auth_views.LoginView.as_view(template_name='Parkapp/login.html'), name='login'),
 
 ]
+
+#test
