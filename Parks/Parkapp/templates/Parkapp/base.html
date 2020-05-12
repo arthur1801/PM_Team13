@@ -43,6 +43,7 @@
                 <a class="nav-item nav-link" href="{% url 'password_change' %}">Change Password</a>
                 <a class="nav-item nav-link" href="{% url 'sendmail' %}">Send Mail</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout {{ user.get_username }}</a>
+                <a class="nav-item nav-link" href="{% url 'registerChild' %}">Register Child</a>
 
 
                 {% elif user.is_authenticated %}
