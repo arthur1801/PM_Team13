@@ -4,7 +4,7 @@ from django.core.mail import send_mail as sm
 from django.contrib.auth.models import User,Group,GroupManager
 from django.contrib import messages
 from django import forms
-from .forms import RegisterForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
+from .forms import RegisterForm,RegisterChildForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
 from .forms import SendmailForm
 from .models import B7data,Parkimg,Location
 
@@ -71,7 +71,8 @@ def UsernameChangeView (request):
 
 def Register (request):
     return render(request,'Parkapp/register.html')
-
+def RegisterChild (request):
+    return render(request,'Parkapp/registerChild.html')
 
 def register(response):
     if response.method == "POST":
@@ -90,6 +91,19 @@ def register(response):
             return redirect("/login")
     else:
         form = RegisterForm()
+    return render(response, "Parkapp/register.html", {"form":form})
+
+def registerChild(response):
+    if response.method == "POST":
+        form = RegisterChildForm(response.POST)
+        if form.is_valid():
+            my_group = Group.objects.get(name='kids')
+            form.save()
+            idG=User.objects.get_by_natural_key(form.cleaned_data['username'])
+            my_group.user_set.add(idG)
+            return redirect("/")
+    else:
+        form = RegisterChildForm()
     return render(response, "Parkapp/register.html", {"form":form})
 
 def sendmail(request):
