@@ -16,7 +16,7 @@ pipeline {
          steps {
            
             sh '''
-
+            cd Parks
             pylint --disable=W0622,W0611,F0401,R0914,W0221,W0222,W0142,F0010,W0703,R0911,C0415,C0116 -f parseable Parkapp/*
             '''
          }
