@@ -17,10 +17,10 @@ urlpatterns = [
     path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
     path('username_change/', views.UsernameChangeView , name='username_change'),
-    #path('sendmail/', auth_views.LoginView.as_view(template_name='Parkapp/sendmail.html'), name='Sendmail'),
     path('sendmail/',v.sendmail,name='sendmail'),
     path('profile/',v.profile,name='profile'),
     path('search/',v.search,name='search'),
+    path('assignChild/',v.assignChild,name='assignChild'),
 ]
 
 if settings.DEBUG:

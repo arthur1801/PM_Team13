@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User,Group
 from django.forms import ModelForm
-from .models import Profile,Parkimg
+from .models import Profile,Parkimg,Parent_Childs
+
 
 
 class RegisterForm(UserCreationForm):
@@ -57,4 +58,10 @@ class SearchForm(forms.ModelForm):
         fields=['username']
 
 
+class assignChildForm(forms.ModelForm):
+    Parent_Username = forms.ModelChoiceField(queryset=(Group.objects.get(name='parents')).user_set.all(), required=True)
+    Child_Username = forms.ModelChoiceField(queryset=(Group.objects.get(name='kids')).user_set.all(), required=True)
+    class Meta:
+        model=Parent_Childs
+        fields=['Parent_Username','Child_Username']
 

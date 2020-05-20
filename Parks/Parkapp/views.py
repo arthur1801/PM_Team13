@@ -4,7 +4,7 @@ from django.core.mail import send_mail as sm
 from django.contrib.auth.models import User,Group,GroupManager
 from django.contrib import messages
 from django import forms
-from .forms import RegisterForm,RegisterChildForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
+from .forms import RegisterForm,RegisterChildForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm,assignChildForm
 from .forms import SendmailForm
 from .models import B7data,Parkimg,Location,Parent_Childs
 
@@ -159,4 +159,16 @@ def search(request):
     else:
         queryset = []
     return render(request, 'Parkapp/search.html', {'queryset': queryset, })
+
+
+def assignChild(request):
+    form = assignChildForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            Parent=form.cleaned_data['Parent_Username']
+            Kid = form.cleaned_data['Child_Username']
+            p = Parent_Childs(Parent_Username=Parent, Child_Username=Kid)
+            p.save()
+
+    return render(request, 'Parkapp/assignChild.html', {'form': form, })
 

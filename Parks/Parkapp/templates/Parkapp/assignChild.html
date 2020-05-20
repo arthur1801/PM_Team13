@@ -1,0 +1,16 @@
+{% extends "Parkapp/base.html" %}
+
+{% block title %}Search username{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Assign Child</h1>
+
+<form method="POST" action="/assignChild/">
+    {% csrf_token%}
+    {{form|crispy}}
+    <br>
+    <button type="submit">Assign</button>
+</form>
+
+{% endblock %}
