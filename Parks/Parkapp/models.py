@@ -46,24 +46,3 @@ class Location():
 
 
 
-    # def __init__(self,i):
-    #     super(B7data, self).__init__()
-    #     self.Name = i['Name']
-    #     self.surface = i['surface']
-    #     self.shadowing = i['shadowing']
-    #     self.combined1 = i['combined1']
-    #     self.combined2 = i['combined2']
-    #     self.combined3 = i['combined3']
-    #     self.SpecialCom = i['SpecialCom']
-    #     self.Swing = i['Swing']
-    #     self.slid = i['slid']
-    #     self.carrousel = i['carrousel']
-    #     self.spring = i['spring']
-    #     self.omega = i['omega']
-    #     self.roserose = i['roserose']
-    #     self.other = i['other']
-    #     self.lat = i['lat']
-    #     self.lon = i['lon']
-
-
-

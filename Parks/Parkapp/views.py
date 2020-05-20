@@ -9,10 +9,6 @@ from .forms import SendmailForm
 from .models import B7data,Parkimg,Location,Parent_Childs
 
 
-# def getCurrentUser(request):
-#     current_user = request.user
-#     return current_user
-
 def home(request):
     Center=Location(31.267509,34.789512)
     South = Location(31.225185, 34.789512)
@@ -105,8 +101,8 @@ def registerChild(response):
             form.save()
             idG=User.objects.get_by_natural_key(form.cleaned_data['username'])
             my_group.user_set.add(idG)
-            par2=response.user.username
-            p=Parent_Childs(Parent_Username=par2,Child_Username=idG)
+            par=response.user.username
+            p=Parent_Childs(Parent_Username=par,Child_Username=idG)
             p.save()
             return redirect("/")
     else:
@@ -133,20 +129,6 @@ def sendmail(request):
 
     return render(request, "Parkapp/sendmail.html", {'form': form})
 
-
-
-
-   # res = sm(
-   #     subject = 'Subject here',
-    #    message = 'Here is the message.',
-    #    from_email = 'b7parks@gmail.com',
-    #    recipient_list = ['shaharkozi18@gmail.com'],
-    #    fail_silently=False,
-   # )
-
-
-    #return HttpResponse("Email sent to {res} members")
-    #return HttpResponse("Email sent to "+ res +" members")
 
 def profile(request):
     if request.method == 'POST':
