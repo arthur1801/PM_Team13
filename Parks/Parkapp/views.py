@@ -79,15 +79,17 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             checkgroup=form.cleaned_data['group']
-            print(checkgroup)
             if str(checkgroup).__eq__('parents'):
                 my_group = Group.objects.get(name='parents')
             else:
                 my_group = Group.objects.get(name='kids')
             form.save()
+            if str(checkgroup).__eq__('parents'):
+                user = User.objects.get(username=form.cleaned_data['username'])
+                user.is_staff = True
+                user.save()
             idG=User.objects.get_by_natural_key(form.cleaned_data['username'])
             my_group.user_set.add(idG)
-
             return redirect("/login")
     else:
         form = RegisterForm()
