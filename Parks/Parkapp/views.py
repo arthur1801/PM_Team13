@@ -37,7 +37,7 @@ def home(request):
         elif ((i.lon <= SouthWest.lon ) and (i.lon>= South.lon)) and ((i.lat <=Center.lat) and (i.lat>=South.lat)):
             SW.append(i)
 
-
+    # find parks
     context={
         'parks': NE+NW+SE+SW ,
         'parks-img': Parkimg.objects.all()
