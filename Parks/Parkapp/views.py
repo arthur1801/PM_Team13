@@ -6,8 +6,12 @@ from django.contrib import messages
 from django import forms
 from .forms import RegisterForm,RegisterChildForm,ChangeUsernameForm,UserUpdateForm,ProfileUpdateForm,SearchForm
 from .forms import SendmailForm
-from .models import B7data,Parkimg,Location
+from .models import B7data,Parkimg,Location,Parent_Childs
 
+
+# def getCurrentUser(request):
+#     current_user = request.user
+#     return current_user
 
 def home(request):
     Center=Location(31.267509,34.789512)
@@ -101,6 +105,9 @@ def registerChild(response):
             form.save()
             idG=User.objects.get_by_natural_key(form.cleaned_data['username'])
             my_group.user_set.add(idG)
+            par2=response.user.username
+            p=Parent_Childs(Parent_Username=par2,Child_Username=idG)
+            p.save()
             return redirect("/")
     else:
         form = RegisterChildForm()

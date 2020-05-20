@@ -9,6 +9,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+class Parent_Childs(models.Model):
+    Parent_Username= models.CharField(max_length=50)
+    Child_Username=models.CharField(max_length=50)
 
 class Parkimg(models.Model):
 
