@@ -43,7 +43,7 @@ class LocationTestCase(TestCase):
         loc = Location(31.267509,34.789512)
         self.assertEqual(loc.lat,31.267509)
         self.assertEqual(loc.lon,34.789512)
-
+/*
 class LoginTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
@@ -53,3 +53,4 @@ class LoginTestCase(TestCase):
         user = User.objects.get(username='Testcase')
         self.assertEqual(user.username, 'Testcase')
         self.assertEqual(user.email, 'test@gmail.com')
+*/
