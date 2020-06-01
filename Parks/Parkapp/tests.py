@@ -49,8 +49,7 @@ class LocationTestCase(TestCase):
 
 class LoginTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(
-            username='Testcase', email='test@gmail.com', password='top_secret1234')
+        self.user = User.objects.create_user(username='Testcase', email='test@gmail.com', password='top_secret1234')
 
     def test(self):
         user = User.objects.get(username='Testcase')
