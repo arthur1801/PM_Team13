@@ -17,11 +17,12 @@
         <th>Username</th>
         <th>Email</th>
     </tr>
-    {% for instance in queryset %}
+
+    {% for instance1 in set %}
     <tr>
-        <td>{{instance.username}}</td>
-        <td>{{instance.email}}</td>
+        <td>{{instance1.username }}</td>
     </tr>
     {% endfor %}
+
 </table>
 {% endblock %}

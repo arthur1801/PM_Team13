@@ -47,4 +47,3 @@ class Location():
         self.lon =l
 
 
-

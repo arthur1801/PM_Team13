@@ -21,6 +21,7 @@ urlpatterns = [
     path('profile/',v.profile,name='profile'),
     path('search/',v.search,name='search'),
     path('assignChild/',v.assignChild,name='assignChild'),
+    path('searchpark/',v.searchPark,name='searchPark'),
 ]
 
 if settings.DEBUG:

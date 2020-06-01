@@ -10,41 +10,41 @@ from .models import B7data,Parkimg,Location,Parent_Childs
 
 
 def home(request):
-    Center=Location(31.267509,34.789512)
+    return render(request,'Parkapp/home.html')
+
+
+def searchPark(request):
+    Center = Location(31.267509, 34.789512)
     South = Location(31.225185, 34.789512)
     North = Location(31.309833, 34.789512)
     CenterWest = Location(31.267509, 34.842315)
-    CenterEast = Location(31.267509,34.738301)
-    SouthWest = Location(31.225185,34.842315)
-    SouthEast = Location(31.225185,34.738301)
-    NorthWest = Location(31.309833,34.842315)
-    NorthEast = Location(31.309833,34.738301)
+    CenterEast = Location(31.267509, 34.738301)
+    SouthWest = Location(31.225185, 34.842315)
+    SouthEast = Location(31.225185, 34.738301)
+    NorthWest = Location(31.309833, 34.842315)
+    NorthEast = Location(31.309833, 34.738301)
     NE = list()
-    NW= list()
+    NW = list()
     SE = list()
     SW = list()
     for i in (B7data.objects.all()):
 
-        if ((i.lon <= North.lon ) and (i.lon>= NorthEast.lon)) and ((i.lat <=North.lat) and (i.lat>=Center.lat)):
+        if ((i.lon <= North.lon) and (i.lon >= NorthEast.lon)) and ((i.lat <= North.lat) and (i.lat >= Center.lat)):
             NE.append(i)
 
-        elif ((i.lon <= NorthWest.lon ) and (i.lon>= North.lon)) and ((i.lat <=North.lat) and (i.lat>=Center.lat)):
+        elif ((i.lon <= NorthWest.lon) and (i.lon >= North.lon)) and ((i.lat <= North.lat) and (i.lat >= Center.lat)):
             NW.append(i)
 
-        elif ((i.lon <= South.lon ) and (i.lon>= SouthEast.lon)) and ((i.lat <=Center.lat) and (i.lat>=South.lat)):
+        elif ((i.lon <= South.lon) and (i.lon >= SouthEast.lon)) and ((i.lat <= Center.lat) and (i.lat >= South.lat)):
             SE.append(i)
 
-        elif ((i.lon <= SouthWest.lon ) and (i.lon>= South.lon)) and ((i.lat <=Center.lat) and (i.lat>=South.lat)):
+        elif ((i.lon <= SouthWest.lon) and (i.lon >= South.lon)) and ((i.lat <= Center.lat) and (i.lat >= South.lat)):
             SW.append(i)
-
-    # find parks
-    context={
-        'parks': NE+NW+SE+SW ,
+    context = {
+        'parks': NE + NW + SE + SW,
         'parks-img': Parkimg.objects.all()
     }
-    return render(request,'Parkapp/home.html',context)
-
-
+    return render(request, 'Parkapp/searchpark.html',context)
 
 def login(request):
    return render(request,'Parkapp/login.html')
@@ -154,11 +154,13 @@ def profile(request):
 def search(request):
     form = SearchForm(request.POST)
     query = request.GET.get('srh', '')
+    set=(Group.objects.get(name='kids')).user_set.all()
     if query:
         queryset = User.objects.filter(username__contains=query)
     else:
         queryset = []
-    return render(request, 'Parkapp/search.html', {'queryset': queryset, })
+        set=[]
+    return render(request, 'Parkapp/search.html', {'set' :set})
 
 
 def assignChild(request):
