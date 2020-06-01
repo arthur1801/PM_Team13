@@ -43,8 +43,8 @@ class LocationTestCase(TestCase):
         loc = Location(31.267509,34.789512)
         self.assertEqual(loc.lat,31.267509)
         self.assertEqual(loc.lon,34.789512)
-        
-        
+
+
 
 
 class LoginTestCase(TestCase):
