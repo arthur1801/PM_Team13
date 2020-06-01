@@ -14,11 +14,24 @@ def home(request):
 
 
 def searchPark(request):
+    SandSurface=list()
+    GrassSurface=list()
+    RubberSurface=list()
+    Shadowing=list()
+    Omega=list()
+    Combined1= list()
+    Combined2= list()
+    Combined3= list()
+    Swing = list()
+
+
+
+
+
+
     Center = Location(31.267509, 34.789512)
     South = Location(31.225185, 34.789512)
     North = Location(31.309833, 34.789512)
-    CenterWest = Location(31.267509, 34.842315)
-    CenterEast = Location(31.267509, 34.738301)
     SouthWest = Location(31.225185, 34.842315)
     SouthEast = Location(31.225185, 34.738301)
     NorthWest = Location(31.309833, 34.842315)
@@ -27,23 +40,135 @@ def searchPark(request):
     NW = list()
     SE = list()
     SW = list()
-    for i in (B7data.objects.all()):
 
+    for i in (B7data.objects.all()):
+        #surface mapping
+        if(i.surface == 'משטח חול'):
+            SandSurface.append(i)
+        elif(i.surface == 'דשא סינטטי'):
+            GrassSurface.append(i)
+        else:
+            RubberSurface.append(i)
+
+        #shadowing mapping
+        if(i.shadowing == 'יש'):
+            Shadowing.append(i)
+
+        #omega mapping
+        if(i.omega == 1 or i.omega == '1'):
+            Omega.append(i)
+
+        #combined1 mapping
+        if (i.combined1 >= 1 ):
+            Combined1.append(i)
+        # combined2 mapping
+        if (i.combined2 >= 1 ):
+            Combined2.append(i)
+        # combined3 mapping
+        if (i.combined3 >= 1 ):
+            Combined3.append(i)
+
+        #swing mapping
+        if (i.Swing >= 1 ):
+            Swing.append(i)
+
+        #NE mapping
         if ((i.lon <= North.lon) and (i.lon >= NorthEast.lon)) and ((i.lat <= North.lat) and (i.lat >= Center.lat)):
             NE.append(i)
-
+        #NW mapping
         elif ((i.lon <= NorthWest.lon) and (i.lon >= North.lon)) and ((i.lat <= North.lat) and (i.lat >= Center.lat)):
             NW.append(i)
-
+        #SE mapping
         elif ((i.lon <= South.lon) and (i.lon >= SouthEast.lon)) and ((i.lat <= Center.lat) and (i.lat >= South.lat)):
             SE.append(i)
-
+        #SW mapping
         elif ((i.lon <= SouthWest.lon) and (i.lon >= South.lon)) and ((i.lat <= Center.lat) and (i.lat >= South.lat)):
             SW.append(i)
-    context = {
-        'parks': NE + NW + SE + SW,
-        'parks-img': Parkimg.objects.all()
-    }
+        filters=list()
+        filters.append('Surface-Sand')
+        filters.append('Surface-Grass')
+        filters.append('Surface-Rubber')
+        filters.append('Extreme-Yes')
+        filters.append('Combined1-Yes')
+        filters.append('Combined2-Yes')
+        filters.append('Combined3-Yes')
+        filters.append('North East')
+        filters.append('North West')
+        filters.append('South East')
+        filters.append('South West')
+        filters.append('Kids with disability')
+        filters.append('DayTime Parks')
+        filters.append('AllTime Parks')
+        filters.append('Recommended age 0-6')
+        filters.append('Recommended age 6-10')
+        filters.append('Recommended age 10+')
+
+
+        choose = request.GET.get('choice')
+
+        if choose=='Surface-Sand':
+            context = {'parks':SandSurface,
+                       'filters':filters}
+
+        elif choose=='Surface-Grass':
+            context = {'parks':GrassSurface,
+                       'filters':filters}
+        elif choose=='Surface-Rubber':
+            context = {'parks':RubberSurface,
+                       'filters':filters}
+        elif choose=='Extreme-Yes':
+            context = {'parks':Omega,
+                       'filters':filters}
+        elif choose=='Combined1-Yes':
+            context = {'parks':Combined1,
+                       'filters':filters}
+        elif choose=='Combined2-Yes':
+            context = {'parks':Combined2,
+                       'filters':filters}
+        elif choose=='Combined3-Yes':
+            context = {'parks':Combined3,
+                       'filters':filters}
+        elif choose=='North East':
+            context = {'parks':NE,
+                       'filters':filters}
+        elif choose=='North West':
+            context = {'parks':NW,
+                       'filters':filters}
+        elif choose=='South East':
+            context = {'parks':SE,
+                       'filters':filters}
+        elif choose=='South West':
+            context = {'parks':SW,
+                       'filters':filters}
+        elif choose=='Kids with disability':
+            context = {'parks':RubberSurface+GrassSurface,
+                       'filters':filters}
+        elif choose=='DayTime Parks':
+            context = {'parks':Shadowing,
+                       'filters':filters}
+        elif choose=='AllTime Parks':
+            context = {'parks':NE+NW+SE+SW,
+                       'filters':filters}
+        elif choose=='Recommended age 0-6':
+            context = {'parks':set(RubberSurface)-set(Omega+Combined1+Combined2+Combined3),
+                       'filters':filters}
+        elif choose=='Recommended age 6-10':
+            context = {'parks':set(RubberSurface+GrassSurface)-set(Omega),
+                       'filters':filters}
+        elif choose=='Recommended age 10+':
+            context = {'parks':NE+NW+SE+SW,
+                       'filters':filters}
+
+
+
+
+
+        else:
+            context = {
+            'filters':filters,
+            'parks': None,
+            'parks-img': Parkimg.objects.all()
+            }
     return render(request, 'Parkapp/searchpark.html',context)
 
 def login(request):

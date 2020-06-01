@@ -1,5 +1,19 @@
 {% extends "Parkapp/base.html" %}
 {% block content %}
+    <form method="GET" action=".">
+        <label for="choice">Choose Filter</label>
+        </br>
+            <select id="choice" class="form-control" name="choice">
+              <option selected>Choose...</option>
+              {% for op in filters %}
+              <option value="{{ op }}">{{ op }}</option>
+              {% endfor %}
+            </select>
+        </br>
+        <button type="submit" class="btn btn-primary">Search</button>
+        </br>
+    </form>
+</br>
         {% for i in parks %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ i.parkimg.image.url }}">
@@ -13,5 +27,6 @@
           </div>
         </article>
         {% endfor %}
+
 
 {% endblock %}
