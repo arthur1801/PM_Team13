@@ -99,6 +99,7 @@ def searchPark(request):
         filters.append('Kids with disability')
         filters.append('DayTime Parks')
         filters.append('AllTime Parks')
+        filters.append('Swings-Yes')
         filters.append('Recommended age 0-6')
         filters.append('Recommended age 6-10')
         filters.append('Recommended age 10+')
@@ -158,6 +159,9 @@ def searchPark(request):
         elif choose=='Recommended age 10+':
             context = {'parks':NE+NW+SE+SW,
                        'filters':filters}
+        elif choose == 'Swings-Yes':
+            context = {'parks': Swing,
+                       'filters': filters}
 
 
 
