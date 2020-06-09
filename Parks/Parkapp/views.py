@@ -178,6 +178,24 @@ def searchPark(request):
 def login(request):
    return render(request,'Parkapp/login.html')
 
+def ShowPark(request):
+    choose = request.GET.get('choice')
+    parks = list()
+    for i in (B7data.objects.all()):
+        if(str((i.id)) == str((choose))):
+            parks.append(i)
+            context = {
+                'parks': parks,
+                'parks-img': Parkimg.objects.all()
+            }
+
+            break
+        else:
+            context = {
+                'parks': parks,
+                'parks-img': Parkimg.objects.all()
+            }
+    return render(request,'Parkapp/ShowPark.html',context)
 
 def PasswordChangeView (request):
     return render(request,'Parkapp/password_change_form.html')

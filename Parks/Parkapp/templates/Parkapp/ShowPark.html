@@ -1,25 +1,33 @@
 {% extends "Parkapp/base.html" %}
 {% block content %}
     <form method="GET" action=".">
-        <label for="choice">Choose Filter</label>
         </br>
-            <select id="choice" class="form-control" name="choice">
+            <select id="choice" class="form-control" name="choice" hidden="true">
               <option selected>Choose...</option>
-              {% for op in filters %}
-              <option value="{{ op }}">{{ op }}</option>
-              {% endfor %}
             </select>
-        </br>
-        <button type="submit" class="btn btn-primary">Search</button>
+
         </br>
     </form>
 </br>
-        {% for i in parks %}
+         {% for i in parks %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ i.parkimg.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="/ShowPark?choice={{i.id}}">{{ i.Name }}</a>
+                <h1>{{ i.Name }}<h1>
+                <br>
+                <h3>Surface : {{i.surface}}</h3>
+                <br>
+                <h3>Shadowing : {{i.shadowing}}</h3>
+                <br>
+                <h3>Swing : {{i.Swing}}</h3>
+                <br>
+                <h3>slid : {{i.slid}}</h3>
+                <br>
+                <h3>carrousel : {{i.carrousel}}</h3>
+                <br>
+                <h3>omega : {{i.omega}}</h3>
+                <br>
               <small class="text-muted"> </small>
             </div>
             <h2><a class="article-title" href="#"> </a></h2>

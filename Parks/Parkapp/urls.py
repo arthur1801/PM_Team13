@@ -22,6 +22,7 @@ urlpatterns = [
     path('search/',v.search,name='search'),
     path('assignChild/',v.assignChild,name='assignChild'),
     path('searchpark/',v.searchPark,name='searchPark'),
+    path('ShowPark/',v.ShowPark,name='ShowPark'),
 ]
 
 if settings.DEBUG:
