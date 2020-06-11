@@ -59,8 +59,8 @@ class SearchForm(forms.ModelForm):
 
 
 class assignChildForm(forms.ModelForm):
-    Parent_Username = forms.ModelChoiceField(queryset=(Group.objects.filter(name='parents')), required=True)
-    Child_Username = forms.ModelChoiceField(queryset=(Group.objects.filter(name='kids')), required=True)
+    Parent_Username = forms.ModelChoiceField(queryset=(Group.objects.get(name='parents')).user_set.all(), required=True)
+    Child_Username = forms.ModelChoiceField(queryset=(Group.objects.get(name='kids')).user_set.all(), required=True)
 
     class Meta:
         model=Parent_Childs
