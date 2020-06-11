@@ -11,10 +11,14 @@
 </br>
          {% for i in parks %}
         <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ i.parkimg.image.url }}">
+          <br>
+            <row>
+                <img class="image" style='position=absolute' src="/media/default3.jpg">
+            </row>
+            <br>
           <div class="media-body">
             <div class="article-metadata">
-                <h1>{{ i.Name }}<h1>
+                <h1 style="text-align:center;margin-top: 53%;">{{ i.Name }}<h1>
                 <br>
                 <h3>Surface : {{i.surface}}</h3>
                 <br>

@@ -10,13 +10,13 @@
               {% endfor %}
             </select>
         </br>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="button2">Search</button>
         </br>
     </form>
 </br>
         {% for i in parks %}
         <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ i.parkimg.image.url }}">
+          <img class="rounded-circle article-img" src="/media/default2.jpg">
           <div class="media-body">
             <div class="article-metadata">
                 <a class="mr-2" href="/ShowPark?choice={{i.id}}">{{ i.Name }}</a>
