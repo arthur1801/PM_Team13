@@ -301,13 +301,11 @@ def profile(request):
 def search(request):
     form = SearchForm(request.POST)
     query = request.GET.get('srh', '')
-    set=(Group.objects.get(name='kids')).user_set.all()
     if query:
         queryset = User.objects.filter(username__contains=query)
     else:
         queryset = []
-        set=[]
-    return render(request, 'Parkapp/search.html', {'set' :set})
+    return render(request, 'Parkapp/search.html', {'queryset' :queryset})
 
 
 def assignChild(request):

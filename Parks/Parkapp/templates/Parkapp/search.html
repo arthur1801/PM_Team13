@@ -12,15 +12,16 @@
     <br>
     <button type="submit" class="button2" style="margin-top: 2%;margin-bottom: 2%;">Search</button>
 </form>
-<table>
+<table id="usersTable">
     <tr>
         <th>Username</th>
         <th>Email</th>
     </tr>
 
-    {% for instance1 in set %}
+    {% for instance1 in queryset %}
     <tr>
         <td>{{instance1.username }}</td>
+        <td>{{instance1.email }}</td>
     </tr>
     {% endfor %}
 
