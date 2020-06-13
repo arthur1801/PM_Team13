@@ -1,5 +1,6 @@
 from django.test import TestCase
-from .models import Profile , Parkimg ,B7data , Location
+from django.contrib.auth.forms import UserCreationForm
+from .models import Profile , Parkimg ,B7data , Location ,Parent_Childs
 from django.contrib.auth.models import User
 
 class ProfileTestCase(TestCase):
@@ -87,6 +88,45 @@ class ProfileIntegrationWithUSERTestCase(TestCase):
 
 
 
+class ParentKidassignTestCase(TestCase):
+    #test kid parent and assigment creation
+    def setUp(self):
+        Parent = User.objects.create_user(username='test', email='test@test.com', password='top_secret')
+        kid = User.objects.create_user(username='test2', email='test2@test.com', password='top_secret')
+
+    def test(self):
+        Parent = User.objects.get(username='test')
+        kid = Child_Username=User.objects.get(username='test2')
+        p_c = Parent_Childs(Parent_Username=Parent,Child_Username=kid)
+        self.assertEqual(p_c.Parent_Username.username,'test')
+        self.assertEqual(p_c.Child_Username.username,'test2')
+
+
+
+class ParkandLocationIntegrationTestCase(TestCase):
+    #test kid parent and assigment creation
+    def setUp(self):
+        park = B7data.objects.create(Name='park',lat=31.267509,lon=34.789512)
+
+    def test(self):
+        park_test = B7data.objects.get(Name='park')
+        loc = Location(31.267509,34.789512)
+        self.assertEqual(park_test.lat,31.267509)
+        self.assertEqual(park_test.lon,34.789512)
+
+class RegistrationAndCreatingINDBTestCase(TestCase):
+    #test integration of registration form and user creation in DB
+    def test(self):
+        def test_form(self):
+            data = {
+                'username': 'testuser',
+                'password1': 'test123',
+                'password2': 'test123',
+            }
+
+            form = UserCreationForm(data)
+            user = User.objects.get(username='testuser')
+            self.assertEqual(user.username,'testuser')
 
 
 
