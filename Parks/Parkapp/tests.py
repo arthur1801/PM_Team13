@@ -72,7 +72,7 @@ class ParkimgIntegrationWithParkTestCase(TestCase):
     def test(self):
         park_test = B7data.objects.get(Name='park')
         p = Parkimg.objects.create(park=park_test)
-        self.assertEqual(p.image,'default.jpg')
+        self.assertEqual(p.image,'default2.jpg')
 
 
 class ProfileIntegrationWithUSERTestCase(TestCase):
